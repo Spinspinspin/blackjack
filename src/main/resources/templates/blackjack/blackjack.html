@@ -1,41 +1,79 @@
 <!doctype html>
 <html>
 	<head>
+	<link rel="stylesheet" href="/site.css">
 		<title>Blackjack</title>
 	</head>
 	<h1>Lets Play Blackjack</h1>
 	<body>
 	<div>
+	<h2>Dealer</h2>
+	<div>
+            {{#dealer.cards}}
+              <span class="card">
+                {{ visualRep }}
+                {{ suit }}
+              </span>
+            {{/dealer.cards}}
+          </div>
+	
+	<hr>
+	<h2>Player</h2>
+	<div>
+          {{#gambler.cards}}
+            <span class="card">
+              {{ visualRep }}
+              {{ suit }}
+           </span>
+           
+          {{/gambler.cards}}
+        </div>
+        
+		<hr>
+	
+	<div>
+         {{#gamblerhand.values}}
+		<div>Player Card Total: {{ . }}</div>
+		{{/gamblerhand.values}}
+        </div>
+        
+		<div>
+           <h3> Your current bet: {{ currentBet }}</h3>
+          <span></span>
+          <h3>Cash left: ${{ gambler.availableCash }}</h3>
+          </div>
+          
+        
+		{{#betState}}
 		<form method="post" action= "/blackjack/operation/bet">
 		<button>Bet</button>
 		<input autofocus type="number" step="any" name="bet" required>
 		</form>
-<!-- 		<form method="post" action= "/blackjack/operation/deal">
-		<button>Deal</button>
-		</form>-->
-		<form method="post" action= "/blackjack/operation/hit">
+		
+		<div>
+         {{#dealerhand.values}}
+		<div>Dealer Card Total: {{ . }}</div>
+		{{/dealerhand.values}}
+        </div>
+		{{/betState}}
+		
+ 			{{#roundState}}
+ 		
+		<form style="display: inline;" method="post" action= "/blackjack/operation/hit">
 		<button>Hit</button>
 		</form>
-		<form method="post" action= "/blackjack/operation/stand">
+		
+		<form style="display: inline;" method="post" action= "/blackjack/operation/stand">
 		<button>Stand</button>
 		</form>
-	<!--<form method="post" action= "/blackjack/operation/double">
-		<button>Double</button>
+		
+			{{/roundState}}
+			
+		
+	<hr>
+	<form method="post" action= "/blackjack/operation/reset">
+		<button>New Game</button>
 		</form>
-		<form method="post" action= "/blackjack/operation/split">
-		<button>Split</button>
-		</form>
-		<form method="post" action= "/blackjack/operation/surrender">
-		<button>Surrender</button>
-		</form>
-		<form method="post" action= "/blackjack/operation/over">
-		<button>Reset Game</button>
-		</form>-->
-	
-	{{#hand.values}}
-		<div>{{ . }}</div>
-	{{/hand.values}}
-	
 	</div>
 	</body>
 </html>

@@ -5,7 +5,7 @@ public class FaceCard  implements Card{
 	private String suit;
 	private String visualRep;
 
-	public FaceCard(String visualrep, String suit) {
+	public FaceCard(String visualRep, String suit) {
 		this.suit = suit;
 		this.visualRep = visualRep;
 	}

@@ -92,7 +92,9 @@ public class Deck {
 			}
 		}
 	}
-					
+					public int getNumberOfCardsLeft() {
+						return cards.length - currentCardIndex;
+					}					
 }
 
 
